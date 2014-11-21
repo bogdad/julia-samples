@@ -19,7 +19,7 @@ module QuandlCache
     end
 
     function filename(handle)
-       replace("./tmp/$handle", "/", "-")	
+       string("./tmp", replace(handle, "/", "-"))	
     end
 
     if !isdir("./tmp")
