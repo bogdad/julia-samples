@@ -1,5 +1,5 @@
 module QuandlCache
-
+    importall Quandl
     export quandlcache
     
     function quandlcache(handle)
@@ -19,6 +19,10 @@ module QuandlCache
     end
 
     function filename(handle)
-	"tmp/" + handle
+       replace("./tmp/$handle", "/", "-")	
+    end
+
+    if !isdir("./tmp")
+      mkdir("./tmp")
     end
 end
