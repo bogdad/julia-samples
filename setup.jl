@@ -1,7 +1,5 @@
-Pkg.add("Quandl")
-Pkg.add("Gadfly")
-
 importall Quandl
 importall Gadfly
-
-set_auth_token(get(ENV, "QUANDL_TOKEN", ""))
+token = get(ENV, "QUANDL_TOKEN", "")
+print("using token " + token)
+set_auth_token(token)

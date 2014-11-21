@@ -1,17 +1,19 @@
 module QuandlCache
+
+    export quandlcache
     
-    function quandlload(handle)
+    function quandlcache(handle)
        key = filename(handle)
        if isreadable(key)
-         s = open(key, "r")
-         data = deserialize(key)
-         close(s)
+         open(key, "r") do s
+           data = deserialize(s)
+         end
          return data
        else
          data = quandl(handle)
-         s = open(key, "w")
-         serialize(s, data)
-         close(s)
+         open(key, "w") do s
+           serialize(s, data)
+         end
          return data
        end
     end
