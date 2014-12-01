@@ -6,13 +6,13 @@ module Rates
   export layers
 
   token = get(ENV, "QUANDL_TOKEN", "")
-  print("using token " + token)
+  print(string("using token ",token))
   set_auth_token(token)
 
   function layers(handles)
     function drawlayer(handle)
       data = quandlcache(handle)
-      layer(x = [1:length(data.values[:,1])], y = data.values[:,1])
+      layer(x = [1:length(data.values[:,1])], y = data.values[:,1], Geom.point)
     end
     map(drawlayer, handles)
   end
