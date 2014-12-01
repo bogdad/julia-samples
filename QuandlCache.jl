@@ -19,6 +19,7 @@ module QuandlCache
     end
 
     function filename(handle)
+       print(handle)
        string("./tmp", replace(handle, "/", "-"))	
     end
 
