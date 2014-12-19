@@ -5,6 +5,7 @@ module IntervalTrees
 
 	abstract ANode
   type Node <: ANode
+		center::Int
 		left::ANode
 		right::ANode
 		inter_by_left::Vector{Interval}
@@ -28,7 +29,7 @@ module IntervalTrees
 		intersecting=filter(i-> (i[1]<center) && (i[2]>center), intervals)
 		inter_by_left=sort(intersecting, by=(l,r)->l)
 		inter_by_right=sort(intersecting, by=(l,r)->r)
-		Node(buildnode(to_left), buildnode(to_right), inter_by_left, inter_by_right)
+		Node(center,buildnode(to_left), buildnode(to_right), inter_by_left, inter_by_right)
   end
 
 end
