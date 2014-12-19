@@ -14,7 +14,7 @@ module IntervalTrees
 	end
 
 	function buildnode(intervals::Vector{Interval})
-		if length(intervals)
+		if isempty(intervals)
 			return Sentinel()
 		end
 		lefts=map( i ->i[1], intervals)
