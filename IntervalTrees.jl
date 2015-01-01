@@ -14,7 +14,7 @@ module IntervalTrees
 	type Sentinel <: ANode
 	end
 
-	function buildnode(intervals::Vector{Interval})
+  function buildnode(intervals::Vector{Interval})
 		if isempty(intervals)
 			return Sentinel()
 		end
@@ -29,6 +29,25 @@ module IntervalTrees
 		leftnode::ANode=buildnode(to_left)
 		rightnode::ANode=buildnode(to_right)
 		Node(center, leftnode, rightnode, inter_by_left, inter_by_right)
+  end
+
+  function search(tree::ANode, point::Int)
+    []
+  end
+  function search(tree::Node, point::Int)
+	if point < tree.center
+	  	res=search(tree.lefts, point)
+		idx=searchsorted(tree.inter_by_left, point, by=i->i[1])
+	    append!(res,tree.inter_by_left[1:idx.start-1])
+	    return res
+	else if point = tree.center
+		return inter_by_left
+	else
+	    res=search(tree.rights, point)
+	    idx=searchsorted(tree.inter_by_right, point, by=-i->i[2])
+	    append!(res,tree.inter_by_right[1:idx.start-1])
+	    return res
+	end
   end
 
   function test()
