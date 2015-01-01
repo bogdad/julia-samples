@@ -36,14 +36,14 @@ module IntervalTrees
   end
   function search(tree::Node, point::Int)
 	if point < tree.center
-	  	res=search(tree.lefts, point)
+	  	res=search(tree.left, point)
 		idx=searchsorted(tree.inter_by_left, point, by=i->i[1])
 	    append!(res,tree.inter_by_left[1:idx.start-1])
 	    return res
-	else if point = tree.center
-		return inter_by_left
+	elseif point == tree.center
+		return tree.inter_by_left
 	else
-	    res=search(tree.rights, point)
+	    res=search(tree.right, point)
 	    idx=searchsorted(tree.inter_by_right, point, by=-i->i[2])
 	    append!(res,tree.inter_by_right[1:idx.start-1])
 	    return res
@@ -53,7 +53,8 @@ module IntervalTrees
   function test()
   	intervals = [(1, 10), (2,4), (6,9), (2,15)]
   	println(intervals)
-  	buildnode(intervals)
+  	tree=buildnode(intervals)
+    search(tree, 3)
   end
 
 end
