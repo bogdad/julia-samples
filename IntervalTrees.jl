@@ -95,6 +95,10 @@ module IntervalTrees
         intr = search(tree, (11, 12))
         println(intr)
         @test contains(intr, (2, 15))
+
+        intr = search(tree, (5, 8))
+        println(intr)
+        @test contains(intr, (6, 9))
   	end
 
 	function contains(res, int::Interval)
