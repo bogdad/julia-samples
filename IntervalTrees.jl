@@ -25,8 +25,8 @@ module IntervalTrees
 		if isempty(intervals)
 			return Sentinel()
 		end
-		lefts = map( left, intervals)
-		rights = map( right, intervals)
+		lefts = map(left, intervals)
+		rights = map(right, intervals)
 		center = mean([lefts; rights])
 		to_left = filter(i-> right(i)<center, intervals)
 		to_right = filter(i-> left(i)>center, intervals)
